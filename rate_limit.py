@@ -28,14 +28,16 @@ def rate_limit(max_calls, period):
 
 @rate_limit(max_calls=6, period=10)
 def api_call():
+    time.sleep(1)
     print('API call executed successfully')
 
 
 def main():
-    for _ in range(8):
+    for _ in range(20):
         try:
             api_call()
         except Exception as e:
+            time.sleep(1)  # retry delay
             print(f'Error occurred: {e}')
 
 
