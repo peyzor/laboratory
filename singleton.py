@@ -13,7 +13,21 @@ def singleton(cls):
     return wrapper
 
 
-@singleton
+def besser_singleton(cls):
+    instance = None
+
+    @functools.wraps(cls)
+    def wrapper(*args, **kwargs):
+        nonlocal instance
+        if instance is None:
+            instance = cls(*args, **kwargs)
+
+        return instance
+
+    return wrapper
+
+
+@besser_singleton
 class TheOne:
     pass
 
