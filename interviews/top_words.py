@@ -1,4 +1,3 @@
-# torob interview
 from multiprocessing import Pool
 import heapq
 from collections import defaultdict
