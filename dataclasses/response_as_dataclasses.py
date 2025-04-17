@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-import json
-from textwrap import indent
 
 import requests
 
@@ -43,7 +41,6 @@ def main():
     # print(top_games)
     for game in top_games.response.ranks[:3]:
         print(game)
-
 
 
 if __name__ == '__main__':
