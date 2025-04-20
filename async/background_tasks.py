@@ -15,10 +15,8 @@ async def main():
         bg_tasks.add(task)
         task.add_done_callback(bg_tasks.discard)
 
-    print(bg_tasks)
-
-    for i in range(5):
-        await asyncio.sleep(i)
+    results = await asyncio.gather(*bg_tasks)
+    print(results)
 
     print(bg_tasks)
 
