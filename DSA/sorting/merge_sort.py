@@ -34,8 +34,8 @@ def merge(first, second):
 
 def main():
     nums = [4, 3, 1, 5, 61, 3, 17]
-    sorted_nums = merge_sort(nums)
     print('nums', nums)
+    sorted_nums = merge_sort(nums)
     print('sorted_nums', sorted_nums)
 
 
