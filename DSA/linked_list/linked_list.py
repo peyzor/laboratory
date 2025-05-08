@@ -2,6 +2,10 @@ class LinkedList:
     def __init__(self, head):
         self.head = head
 
+    def add_to_head(self, node):
+        node.next = self.head
+        self.head = node
+
     def add_to_tail(self, node):
         if not self.head:
             self.head = node
@@ -56,8 +60,14 @@ def main():
         print(item.val)
 
     print('-' * 20)
-    n3 = Node(4)
-    ll.add_to_tail(n3)
+    n4 = Node(4)
+    ll.add_to_tail(n4)
+    for item in ll:
+        print(item.val)
+
+    print('-' * 20)
+    n5 = Node(5)
+    ll.add_to_head(n5)
     for item in ll:
         print(item.val)
 
