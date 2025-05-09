@@ -57,6 +57,51 @@ def bst_max(root):
     return bst_max(root.right)
 
 
+def preorder_traversal(root):
+    visited = []
+
+    def preorder(node):
+        if node is None:
+            return
+
+        visited.append(node.val)
+        preorder(node.left)
+        preorder(node.right)
+
+    preorder(root)
+    return visited
+
+
+def postorder_traversal(root):
+    visited = []
+
+    def postorder(node):
+        if node is None:
+            return
+
+        postorder(node.left)
+        postorder(node.right)
+        visited.append(node.val)
+
+    postorder(root)
+    return visited
+
+
+def inorder_traversal(root):
+    visited = []
+
+    def inorder(node):
+        if node is None:
+            return
+
+        inorder(node.left)
+        visited.append(node.val)
+        inorder(node.right)
+
+    inorder(root)
+    return visited
+
+
 class BSTNode:
     def __init__(self, val=None):
         self.val = val
@@ -136,6 +181,15 @@ def main():
     print('-' * 40)
     print('min', bst_min(root))
     print('max', bst_max(root))
+
+    print('PREORDER', '-' * 20)
+    print(preorder_traversal(root))
+
+    print('POSTORDER', '-' * 20)
+    print(postorder_traversal(root))
+
+    print('INORDER', '-' * 20)
+    print(inorder_traversal(root))
 
 
 if __name__ == '__main__':
