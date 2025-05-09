@@ -162,6 +162,21 @@ class BSTNode:
         self.right = self.right.delete(min_larger_node.val)
         return self
 
+    def exists(self, val):
+        if self.val == val:
+            return True
+
+        if val < self.val:
+            if self.left is None:
+                return False
+
+            return self.left.exists(val)
+        else:
+            if self.right is None:
+                return False
+
+            return self.right.exists(val)
+
 
 def main():
     root = BSTNode()
@@ -177,6 +192,10 @@ def main():
 
     print('AFTER DELETE', '#' * 30)
     bst_print(root)
+
+    print('-' * 40)
+    print('44 EXISTS:', root.exists(44))
+    print('420 EXISTS:', root.exists(420))
 
     print('-' * 40)
     print('min', bst_min(root))
