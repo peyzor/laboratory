@@ -37,6 +37,26 @@ def bst_print(root):
     print(line)
 
 
+def bst_min(root):
+    if root is None:
+        return None
+
+    if root.left is None:
+        return root.val
+
+    return bst_min(root.left)
+
+
+def bst_max(root):
+    if root is None:
+        return None
+
+    if root.right is None:
+        return root.val
+
+    return bst_max(root.right)
+
+
 class BSTNode:
     def __init__(self, val=None):
         self.val = val
@@ -74,6 +94,9 @@ def main():
         root.insert(i)
 
     bst_print(root)
+    print('-' * 40)
+    print('min', bst_min(root))
+    print('max', bst_max(root))
 
 
 if __name__ == '__main__':
