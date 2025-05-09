@@ -1,3 +1,15 @@
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+    def set_next(self, node):
+        self.next = node
+
+    def __str__(self):
+        return f'{self.val}'
+
+
 class LinkedList:
     def __init__(self, head):
         self.head = head
@@ -25,14 +37,6 @@ class LinkedList:
         head.next = node
         self.tail = node
 
-    # # generator impl
-    # def __iter__(self):
-    #     head = self.head
-    #     while head:
-    #         yield head
-    #         head = head.next
-
-    # classic impl
     def __iter__(self):
         self.current = self.head
         return self
@@ -46,13 +50,48 @@ class LinkedList:
         return curr
 
 
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.next = None
+class LLQueue:
+    def __init__(self, head):
+        self.head = head
+        self.tail = None
 
-    def set_next(self, node):
-        self.next = node
+    def remove_from_head(self):
+        if not self.head:
+            return None
+
+        prev_head = self.head
+        self.head = prev_head.next
+        if not self.head:
+            self.tail = None
+
+        return prev_head
+
+    def add_to_head(self, node):
+        if not self.head:
+            self.head = node
+            self.tail = node
+            return
+
+        node.next = self.head
+        self.head = node
+
+    def add_to_tail(self, node):
+        if not self.head:
+            self.head = node
+            return
+
+        head = self.head
+        while head.next:
+            head = head.next
+
+        head.next = node
+        self.tail = node
+
+    def __iter__(self):
+        head = self.head
+        while head:
+            yield head
+            head = head.next
 
     def __str__(self):
         return f'{self.val}'
@@ -82,6 +121,14 @@ def main():
     ll.add_to_head(n5)
     print('TAIL: ', ll.tail)
     for item in ll:
+        print(item.val)
+
+    print('LLQ', '-' * 20)
+    n6 = Node(6)
+    llq = LLQueue(n1)
+    llq.add_to_tail(n6)
+    while llq:
+        item = llq.remove_from_head()
         print(item.val)
 
 
