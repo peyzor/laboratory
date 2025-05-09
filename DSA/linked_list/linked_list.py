@@ -13,13 +13,10 @@ class Node:
 class LinkedList:
     def __init__(self, head):
         self.head = head
-        # if keeping track of tail is necessary
-        self.tail = None
 
     def add_to_head(self, node):
         if not self.head:
             self.head = node
-            self.tail = node
             return
 
         node.next = self.head
@@ -35,7 +32,6 @@ class LinkedList:
             head = head.next
 
         head.next = node
-        self.tail = node
 
     def __iter__(self):
         self.current = self.head
@@ -110,25 +106,20 @@ def main():
         print(item.val)
 
     print('-' * 20)
-    n4 = Node(4)
-    ll.add_to_tail(n4)
-    print('TAIL: ', ll.tail)
     for item in ll:
         print(item.val)
 
     print('-' * 20)
-    n5 = Node(5)
-    ll.add_to_head(n5)
-    print('TAIL: ', ll.tail)
     for item in ll:
         print(item.val)
 
     print('LLQ', '-' * 20)
-    n6 = Node(6)
     llq = LLQueue(n1)
-    llq.add_to_tail(n6)
     while llq:
         item = llq.remove_from_head()
+        if not item:
+            break
+
         print(item.val)
 
 
