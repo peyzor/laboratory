@@ -87,13 +87,52 @@ class BSTNode:
             self.right.insert(val)
             return
 
+    def delete(self, val):
+        if self.val is None:
+            return None
+
+        if val < self.val:
+            if self.left:
+                self.left = self.left.delete(val)
+
+            return self
+
+        if val > self.val:
+            if self.right:
+                self.right = self.right.delete(val)
+
+            return self
+
+        if not self.right:
+            return self.left
+
+        if not self.left:
+            return self.right
+
+        min_larger_node = self.right
+        while min_larger_node.left is not None:
+            min_larger_node = min_larger_node.left
+
+        self.val = min_larger_node.val
+        self.right = self.right.delete(min_larger_node.val)
+        return self
+
 
 def main():
     root = BSTNode()
-    for i in [4, 2, 44, 12, 7, 69, -1000, 420, 500009, 8000000, 8, 4]:
+    for i in [4, 2, 44, 12, 7, 69, 47, 48, -1000, 420, 500009, 8000000, 8, 4]:
         root.insert(i)
 
+    print('ORIGINAL', '#' * 35)
     bst_print(root)
+
+    root.delete(-1000)
+    root.delete(12)
+    root.delete(44)
+
+    print('AFTER DELETE', '#' * 30)
+    bst_print(root)
+
     print('-' * 40)
     print('min', bst_min(root))
     print('max', bst_max(root))
