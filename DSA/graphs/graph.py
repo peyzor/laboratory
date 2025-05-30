@@ -24,5 +24,29 @@ class GraphAdjList:
         self.graph[u].add(v)
         self.graph[v].add(u)
 
-    def edge_exists(self, u, v):
-        pass
+    def bfs(self, start):
+        visited = []
+        queue = [start]
+        while queue:
+            v = queue.pop(0)
+            visited.append(v)
+
+            for neighbour in sorted(self.graph[v]):
+                if neighbour in visited or neighbour in queue:
+                    continue
+
+                queue.append(neighbour)
+
+        return visited
+
+
+def main():
+    graph = GraphAdjList()
+    for u, v in [(1, 2), (1, 4), (1, 5), (2, 3), (3, 4)]:
+        graph.add_edge(u, v)
+
+    print(graph.bfs(1))
+
+
+if __name__ == '__main__':
+    main()
