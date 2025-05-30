@@ -39,6 +39,22 @@ class GraphAdjList:
 
         return visited
 
+    def dfs(self, start):
+        visited = []
+
+        def dfs_rec(v):
+            visited.append(v)
+
+            for neighbour in sorted(self.graph[v]):
+                if neighbour in visited:
+                    continue
+
+                dfs_rec(neighbour)
+
+
+        dfs_rec(start)
+        return visited
+
 
 def main():
     graph = GraphAdjList()
@@ -46,6 +62,7 @@ def main():
         graph.add_edge(u, v)
 
     print(graph.bfs(1))
+    print(graph.dfs(1))
 
 
 if __name__ == '__main__':
