@@ -1,4 +1,4 @@
-from itertools import count, cycle, repeat
+from itertools import count, cycle, repeat, chain
 
 
 def my_cycle(iterable):
@@ -33,6 +33,12 @@ def main():
     print(next(infinite))
     print(next(infinite))
     print(next(infinite))
+
+    my_chain = chain([1, 2, 3], [4, 5])
+    print(list(my_chain))
+
+    my_nested_chain = chain.from_iterable([[1, 2, 3], [4, 5]])
+    print(list(my_nested_chain))
 
 
 if __name__ == '__main__':
